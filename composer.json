@@ -1,0 +1,24 @@
+{
+  "name": "marinusjvv/sudukoSolver",
+  "description": "Tool to solve a sudoku puzzle",
+  "license": "MIT",
+  "keywords": [
+    "sudoku"
+  ],
+  "authors": [
+    {
+      "name": "Marinus Jansen van Vuuren",
+      "email": "marinus.jvv1@gmail.com"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "4.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "MarinusJvv\\Sudoku\\": "src",
+      "MarinusJvv\\Tests\\": "tests"
+    }
+  }
+}

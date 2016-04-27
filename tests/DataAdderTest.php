@@ -40,4 +40,14 @@ class DataAdderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $board->getColumn(9)->getBlock(5)->getValue());
         $this->assertEquals(6, $board->getColumn(4)->getBlock(2)->getValue());
     }
+
+    public function testAddDataCSVFile()
+    {
+        $dataAdder = new DataAdder();
+        $board = $dataAdder->addDataCSVFile($this->board, __DIR__ . '/data/exampleData.csv');
+
+        $this->assertEquals(9, $board->getColumn(4)->getBlock(3)->getValue());
+        $this->assertEquals(1, $board->getColumn(9)->getBlock(5)->getValue());
+        $this->assertEquals(6, $board->getColumn(4)->getBlock(2)->getValue());
+    }
 }

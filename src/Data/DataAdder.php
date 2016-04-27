@@ -19,4 +19,14 @@ class DataAdder
         }
         return $board;
     }
+
+    public function addDataCSVFile(Board $board, $dataLocation)
+    {
+        $handle = fopen($dataLocation, 'r');
+
+        while (($item = fgetcsv($handle))) {
+            $board = $this->addNumber($board, (int)$item[0], (int)$item[1], (int)$item[2]);
+        }
+        return $board;
+    }
 }

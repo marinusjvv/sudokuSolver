@@ -19,8 +19,7 @@ class DataAdderTest extends \PHPUnit_Framework_TestCase
 
     public function testAddNumber()
     {
-        $dataAdder = new DataAdder();
-        $board = $dataAdder->addNumber($this->board, 3, 4, 9);
+        $board = DataAdder::addNumber($this->board, 3, 4, 9);
 
         $this->assertEquals(9, $board->getColumn(4)->getBlock(3)->getValue());
     }
@@ -33,8 +32,7 @@ class DataAdderTest extends \PHPUnit_Framework_TestCase
             [2, 4, 6],
         ];
 
-        $dataAdder = new DataAdder();
-        $board = $dataAdder->addDataArray($this->board, $data);
+        $board = DataAdder::addDataArray($this->board, $data);
 
         $this->assertEquals(9, $board->getColumn(4)->getBlock(3)->getValue());
         $this->assertEquals(1, $board->getColumn(9)->getBlock(5)->getValue());
@@ -43,8 +41,7 @@ class DataAdderTest extends \PHPUnit_Framework_TestCase
 
     public function testAddDataCSVFile()
     {
-        $dataAdder = new DataAdder();
-        $board = $dataAdder->addDataCSVFile($this->board, __DIR__ . '/data/exampleData.csv');
+        $board = DataAdder::addDataCSVFile($this->board, __DIR__ . '/data/exampleData.csv');
 
         $this->assertEquals(9, $board->getColumn(4)->getBlock(3)->getValue());
         $this->assertEquals(1, $board->getColumn(9)->getBlock(5)->getValue());

@@ -12,6 +12,11 @@ class AbstractContainer
     protected $blocks = [];
 
     /**
+     * @var array
+     */
+    protected $setValues = [];
+
+    /**
      * @param $position
      * @param Block $block
      */
@@ -27,5 +32,38 @@ class AbstractContainer
     public function getBlock($position)
     {
         return $this->blocks[$position];
+    }
+
+    /**
+     * @return array
+     */
+    public function getBlocks()
+    {
+        return $this->blocks;
+    }
+
+    /**
+     * @param $value
+     * @return bool
+     */
+    public function hasSetValue($value)
+    {
+        return in_array($value, $this->setValues);
+    }
+
+    /**
+     * @return array
+     */
+    public function getSetValues()
+    {
+        return $this->setValues;
+    }
+
+    /**
+     * @param integer $setValue
+     */
+    public function setSetValue($setValue)
+    {
+        $this->setValues[] = $setValue;
     }
 }

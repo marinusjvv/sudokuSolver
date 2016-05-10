@@ -17,4 +17,27 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $row->setBlock($position, $block);
         $this->assertEquals($value, $row->getBlock($position)->getValue());
     }
+
+    public function testGetBlocks_ReturnsBlocksByReference()
+    {
+        $row = new Row();
+        for ($i=1; $i<=PUZZLE_SIZE; $i++) {
+            $block = new Block();
+            $row->setBlock($i, $block);
+        }
+
+        $blocks = $row->getBlocks();
+        /** @var Block $block */
+        $val = 9;
+        foreach ($blocks as $block) {
+            $block->setCalculatedValue($val--);
+        }
+
+        $blocks = $row->getBlocks();
+        /** @var Block $block */
+        $val = 9;
+        foreach ($blocks as $block) {
+            $this->assertEquals($val--, $block->getValue());
+        }
+    }
 }

@@ -32,4 +32,27 @@ class BlockTest extends \PHPUnit_Framework_TestCase
         $block->setCalculatedValue($value);
         $block->setCalculatedValue(++$value);
     }
+
+    public function testRemovePossibleValue()
+    {
+        $block = new Block();
+        $this->assertTrue($block->hasPossibleValue(5));
+        $this->assertTrue($block->hasPossibleValue(4));
+        $block->removePossibleValue(5);
+        $this->assertFalse($block->hasPossibleValue(5));
+        $this->assertTrue($block->hasPossibleValue(4));
+        $block->removePossibleValue(4);
+        $this->assertFalse($block->hasPossibleValue(5));
+        $this->assertFalse($block->hasPossibleValue(4));
+    }
+
+    public function testHasOnlyOnePossibleValue()
+    {
+        $block = new Block();
+        for ($i=1; $i<PUZZLE_SIZE; $i++) {
+            $block->removePossibleValue($i);
+        }
+        $this->assertTrue($block->hasOnlyOnePossibleValue());
+        $this->assertEquals(PUZZLE_SIZE, array_pop($block->getPossibleValues()));
+    }
 }

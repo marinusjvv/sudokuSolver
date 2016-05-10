@@ -11,7 +11,8 @@ class BoardVisualizerTest extends \PHPUnit_Framework_TestCase
     public function testGetBoardDisplayArray()
     {
         $board = new Board();
-        $board = DataAdder::addDataCSVFile($board, __DIR__ . '/data/exampleData.csv');
+        $dataAdder = new DataAdder();
+        $dataAdder->addDataCSVFile($board, __DIR__ . '/data/exampleData.csv');
         $returned = BoardVisualizer::getBoardDisplayArray($board);
         $this->assertEquals($this->getExpectedBoardDisplayArray(), $returned);
     }
@@ -19,7 +20,8 @@ class BoardVisualizerTest extends \PHPUnit_Framework_TestCase
     public function testGetBoardDisplayString()
     {
         $board = new Board();
-        $board = DataAdder::addDataCSVFile($board, __DIR__ . '/data/exampleData.csv');
+        $dataAdder = new DataAdder();
+        $dataAdder->addDataCSVFile($board, __DIR__ . '/data/exampleData.csv');
         $returned = BoardVisualizer::getBoardDisplayString($board);
         $this->assertEquals($this->getExpectedBoardDisplayString(), $returned);
     }

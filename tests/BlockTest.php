@@ -53,6 +53,7 @@ class BlockTest extends \PHPUnit_Framework_TestCase
             $block->removePossibleValue($i);
         }
         $this->assertTrue($block->hasOnlyOnePossibleValue());
-        $this->assertEquals(PUZZLE_SIZE, array_pop($block->getPossibleValues()));
+        $array = $block->getPossibleValues();
+        $this->assertEquals(PUZZLE_SIZE, array_pop($array));
     }
 }

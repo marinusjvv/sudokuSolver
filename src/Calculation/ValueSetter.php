@@ -38,7 +38,8 @@ class ValueSetter
             if (!$block->hasOnlyOnePossibleValue()) {
                 continue;
             }
-            $value = array_pop($block->getPossibleValues());
+            $array = $block->getPossibleValues();
+            $value = array_pop($array);
             $block->setCalculatedValue($value);
             $this->boardMetaData->recordSetValue($board, $rowNumber, $position, $value);
         }

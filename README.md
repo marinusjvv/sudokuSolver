@@ -1,4 +1,3 @@
-[![Build status][Master image]][Master]
-[![Coverage Status][Master coverage image]][Master coverage]
+[![Build Status](https://secure.travis-ci.org/marinusjvv/sudokuSolver?branch=master)](http://travis-ci.org/marinusjvv/sudokuSolver)
 
-A simple solver of suduko puzzles
+A simple solver of sudoku puzzles

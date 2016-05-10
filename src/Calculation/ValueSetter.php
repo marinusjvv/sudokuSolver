@@ -17,6 +17,9 @@ class ValueSetter
      */
     protected $boardMetaData;
 
+    /**
+     * ValueSetter constructor.
+     */
     public function __construct()
     {
         $this->boardMetaData = new BoardMetaData();
@@ -71,6 +74,10 @@ class ValueSetter
         }
     }
 
+    /**
+     * @param AbstractContainer $container
+     * @throws \MarinusJvv\Sudoku\Board\Exceptions\InvalidValueException
+     */
     public function setValueWherePossibleOnlyOnePlaceByContainer(AbstractContainer $container)
     {
         for ($possibleValue=1; $possibleValue<=PUZZLE_SIZE; $possibleValue++) {

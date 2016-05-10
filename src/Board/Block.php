@@ -91,6 +91,9 @@ class Block
         $this->possibleValues = $possibleValues;
     }
 
+    /**
+     * @return void
+     */
     public function emptyPossibleValues()
     {
         $this->possibleValues = [];

@@ -26,6 +26,9 @@ class Board
      */
     protected $blocks = [];
 
+    /**
+     * Board constructor.
+     */
     public function __construct()
     {
         $this->setupBoard();
@@ -90,6 +93,9 @@ class Board
         return $this->blocks;
     }
 
+    /**
+     * @return void
+     */
     protected function setupBoard()
     {
         $this->buildContainers();
@@ -108,6 +114,9 @@ class Board
         }
     }
 
+    /**
+     * @return void
+     */
     protected function buildBlocks()
     {
         for ($row = 1; $row <= PUZZLE_SIZE; $row++) {
@@ -123,6 +132,12 @@ class Board
         }
     }
 
+    /**
+     * @param $row
+     * @param $position
+     * @param $value
+     * @throws Exceptions\InvalidValueException
+     */
     public function setValueByRow($row, $position, $value)
     {
         $this->getRow($row)->getBlock($position)->setCalculatedValue($value);

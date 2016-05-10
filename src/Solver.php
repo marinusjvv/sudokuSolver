@@ -6,7 +6,6 @@ use MarinusJvv\Sudoku\Board\Board;
 use MarinusJvv\Sudoku\Calculation\ValueEliminator;
 use MarinusJvv\Sudoku\Calculation\ValueSetter;
 use MarinusJvv\Sudoku\Data\DataAdder;
-use MarinusJvv\Sudoku\Display\BoardVisualizer;
 use MarinusJvv\Sudoku\Meta\BoardMetaData;
 
 class Solver
@@ -15,11 +14,26 @@ class Solver
      * @var Board
      */
     protected $board;
+    /**
+     * @var ValueEliminator
+     */
     protected $valueEliminator;
+    /**
+     * @var BoardMetaData
+     */
     protected $boardMetaData;
+    /**
+     * @var ValueSetter
+     */
     protected $valueSetter;
+    /**
+     * @var DataAdder
+     */
     protected $dataAdder;
 
+    /**
+     * Solver constructor.
+     */
     public function __construct()
     {
         $this->board = new Board();
@@ -29,11 +43,17 @@ class Solver
         $this->dataAdder = new DataAdder();
     }
 
+    /**
+     * @param $location
+     */
     public function addData($location)
     {
         $this->dataAdder->addDataCSVFile($this->board, $location);
     }
 
+    /**
+     * @param int $maxIncrements
+     */
     public function solvePuzzle($maxIncrements = 50)
     {
         $inc = 0;

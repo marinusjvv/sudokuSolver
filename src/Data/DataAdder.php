@@ -12,6 +12,9 @@ class DataAdder
      */
     protected $boardMetaData;
 
+    /**
+     * DataAdder constructor.
+     */
     public function __construct()
     {
         $this->boardMetaData = new BoardMetaData();

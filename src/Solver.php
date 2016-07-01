@@ -51,20 +51,21 @@ class Solver
         $this->dataAdder->addDataCSVFile($this->board, $location);
     }
 
-    /**
-     * @param int $maxIncrements
-     */
-    public function solvePuzzle($maxIncrements = 50)
+    public function addValue($row, $column, $value)
     {
-        $inc = 0;
+        $this->dataAdder->addNumber($this->board, $row, $column, $value);
+    }
+
+    /**
+     * @param bool $maxSolves
+     */
+    public function solvePuzzle($maxSolves = false)
+    {
         while ($this->boardMetaData->isBoardComplete($this->board) === false) {
             $this->valueEliminator->eliminatePossibilitiesForAllSetValues($this->board);
-            $this->valueSetter->sweepForSettingSingleAvailableValues($this->board);
+            $this->valueSetter->sweepForSettingSingleAvailableValues($this->board, $maxSolves);
             //TODO:
             //$this->valueSetter->sweepForSettingValuesPossibleOnlyOnePlace($this->board);
-            if (++$inc === $maxIncrements) {
-                break;
-            }
         }
     }
 

@@ -29,9 +29,10 @@ class ValueSetter
      * @param Board $board
      * @param $rowNumber
      * @param Row $row
+     * @param bool $maxSolves
      * @throws \MarinusJvv\Sudoku\Board\Exceptions\InvalidValueException
      */
-    public function setValueForSingleValueAvailable(Board $board, $rowNumber, Row $row)
+    public function setValueForSingleValueAvailable(Board $board, $rowNumber, Row $row, &$maxSolves = false)
     {
         /** @var Block $block */
         foreach ($row->getBlocks() as $position => $block) {
@@ -42,17 +43,27 @@ class ValueSetter
             $value = array_pop($array);
             $block->setCalculatedValue($value);
             $this->boardMetaData->recordSetValue($board, $rowNumber, $position, $value);
+            if ($maxSolves !== false) {
+                $maxSolves--;
+            }
+            if ($maxSolves === 0) {
+                break;
+            }
         }
     }
 
     /**
      * @param Board $board
+     * @param $maxSolves
      */
-    public function sweepForSettingSingleAvailableValues(Board $board)
+    public function sweepForSettingSingleAvailableValues(Board $board, $maxSolves = false)
     {
         /** @var Row $row */
         foreach ($board->getRows() as $position => $row) {
-            $this->setValueForSingleValueAvailable($board, $position, $row);
+            if ($maxSolves === 0) {
+                return;
+            }
+            $this->setValueForSingleValueAvailable($board, $position, $row, $maxSolves);
         }
     }
 

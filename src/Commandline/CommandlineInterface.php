@@ -16,6 +16,10 @@ class CommandlineInterface
         return trim(fgets(STDIN));
     }
 
+    /**
+     * @param $output
+     * @param bool $newLine
+     */
     public function displayOutput($output, $newLine = true)
     {
         $output .= $newLine === true ? PHP_EOL : '';

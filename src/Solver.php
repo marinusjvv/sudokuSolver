@@ -43,6 +43,11 @@ class Solver
         $this->dataAdder = new DataAdder();
     }
 
+    public function resetBoard()
+    {
+        $this->board = new Board();
+    }
+
     /**
      * @param $location
      */
@@ -51,6 +56,11 @@ class Solver
         $this->dataAdder->addDataCSVFile($this->board, $location);
     }
 
+    /**
+     * @param $row
+     * @param $column
+     * @param $value
+     */
     public function addValue($row, $column, $value)
     {
         $this->dataAdder->addNumber($this->board, $row, $column, $value);
@@ -61,9 +71,13 @@ class Solver
      */
     public function solvePuzzle($maxSolves = false)
     {
+        $this->board->resetRecentlyCalculatedPositions();
         while ($this->boardMetaData->isBoardComplete($this->board) === false) {
             $this->valueEliminator->eliminatePossibilitiesForAllSetValues($this->board);
-            $this->valueSetter->sweepForSettingSingleAvailableValues($this->board, $maxSolves);
+            $break = $this->valueSetter->sweepForSettingSingleAvailableValues($this->board, $maxSolves);
+            if ($break === true || $break === 0) {
+                break;
+            }
             //TODO:
             //$this->valueSetter->sweepForSettingValuesPossibleOnlyOnePlace($this->board);
         }

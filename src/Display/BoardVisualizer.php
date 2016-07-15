@@ -30,6 +30,7 @@ class BoardVisualizer
      */
     public static function getBoardDisplayString(Board $board, $defaultValue = ' ')
     {
+        $newValues = $board->getRecentlyCalculatedPositions();
         $linePositions = [1, 4, 7];
         $result = '';
         for ($row = 1; $row <= PUZZLE_SIZE; $row++) {
@@ -40,7 +41,11 @@ class BoardVisualizer
                 if (in_array($column, $linePositions)) {
                     $result .= '|';
                 }
-                $result .= self::getValueUsingRowAndColumn($board, $row, $column, $defaultValue);
+                $additionalValue = self::getValueUsingRowAndColumn($board, $row, $column, $defaultValue);
+                if (array_key_exists($row, $newValues) && in_array($column, $newValues[$row])) {
+                    $additionalValue = "\033[31m" . $additionalValue . "\033[0m";
+                }
+                $result .= $additionalValue;
                 if (self::isLast($column)) {
                     $result .= '|' . PHP_EOL;
                 }

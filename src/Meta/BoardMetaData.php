@@ -20,6 +20,7 @@ class BoardMetaData
         $board->getColumn($column)->setSetValue($value);
         $section = SectionPositionCalculator::getSectionPosition($column, $row);
         $board->getSection($section)->setSetValue($value);
+        $board->noteRecentlyCalculatedPosition($row, $column);
     }
 
     /**

@@ -84,11 +84,15 @@ class Solver extends ParentSolver
 
     private function startNewPuzzle()
     {
+        $this->resetBoard();
         $this->interface->displayOutput('How would you like to input your data?');
         $this->interface->displayOutput('INPUT <row number> <column number> <value>: Manually loads a value into the puzzle');
         $this->interface->displayOutput('INPUT <file location>: Loads a puzzle from a CSV file');
     }
 
+    /**
+     * @param $command
+     */
     private function processDataInput($command)
     {
         $parts = explode(' ', $command);
@@ -112,11 +116,13 @@ class Solver extends ParentSolver
                 $this->interface->displayOutput($e->getMessage());
                 return;
             }
-
         }
         $this->interface->displayOutput('Data saved');
     }
 
+    /**
+     * @param $command
+     */
     private function doSolve($command)
     {
         $parts = explode(' ', $command);

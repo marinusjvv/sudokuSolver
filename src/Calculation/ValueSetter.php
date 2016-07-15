@@ -55,16 +55,18 @@ class ValueSetter
     /**
      * @param Board $board
      * @param $maxSolves
+     * @return bool
      */
     public function sweepForSettingSingleAvailableValues(Board $board, $maxSolves = false)
     {
         /** @var Row $row */
         foreach ($board->getRows() as $position => $row) {
             if ($maxSolves === 0) {
-                return;
+                return true;
             }
             $this->setValueForSingleValueAvailable($board, $position, $row, $maxSolves);
         }
+        return $maxSolves;
     }
 
     /**

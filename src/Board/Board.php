@@ -25,6 +25,10 @@ class Board
      * @var array
      */
     protected $blocks = [];
+    /**
+     * @var array
+     */
+    protected $recentlyCalculatedPositions = [];
 
     /**
      * Board constructor.
@@ -141,5 +145,27 @@ class Board
     public function setValueByRow($row, $position, $value)
     {
         $this->getRow($row)->getBlock($position)->setCalculatedValue($value);
+    }
+
+    public function resetRecentlyCalculatedPositions()
+    {
+        $this->recentlyCalculatedPositions = [];
+    }
+
+    /**
+     * @param $row
+     * @param $column
+     */
+    public function noteRecentlyCalculatedPosition($row, $column)
+    {
+        if (!array_key_exists($row, $this->recentlyCalculatedPositions)) {
+            $this->recentlyCalculatedPositions[$row] = [];
+        }
+        $this->recentlyCalculatedPositions[$row][] = $column;
+    }
+
+    public function getRecentlyCalculatedPositions()
+    {
+        return $this->recentlyCalculatedPositions;
     }
 }

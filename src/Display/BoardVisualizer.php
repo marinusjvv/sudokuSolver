@@ -26,9 +26,10 @@ class BoardVisualizer
     /**
      * @param Board $board
      * @param string $defaultValue
+     * @param bool $showColours
      * @return string
      */
-    public static function getBoardDisplayString(Board $board, $defaultValue = ' ')
+    public static function getBoardDisplayString(Board $board, $defaultValue = ' ', $showColours = false)
     {
         $newValues = $board->getRecentlyCalculatedPositions();
         $linePositions = [1, 4, 7];
@@ -42,7 +43,7 @@ class BoardVisualizer
                     $result .= '|';
                 }
                 $additionalValue = self::getValueUsingRowAndColumn($board, $row, $column, $defaultValue);
-                if (array_key_exists($row, $newValues) && in_array($column, $newValues[$row])) {
+                if ($showColours && array_key_exists($row, $newValues) && in_array($column, $newValues[$row])) {
                     $additionalValue = "\033[31m" . $additionalValue . "\033[0m";
                 }
                 $result .= $additionalValue;

@@ -31,6 +31,9 @@ class Solver extends ParentSolver
         $this->awaitInput();
     }
 
+    /**
+     *
+     */
     protected function awaitInput()
     {
         while (true) {
@@ -39,6 +42,9 @@ class Solver extends ParentSolver
         }
     }
 
+    /**
+     * @param $command
+     */
     protected function processInput($command)
     {
         switch (strtolower($command)) {
@@ -133,7 +139,7 @@ class Solver extends ParentSolver
 
     private function showPuzzle()
     {
-        $output = BoardVisualizer::getBoardDisplayString($this->getBoard());
+        $output = BoardVisualizer::getBoardDisplayString($this->getBoard(), ' ', true);
         $this->interface->displayOutput($output);
     }
 }
